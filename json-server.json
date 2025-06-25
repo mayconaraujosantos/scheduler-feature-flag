@@ -1,0 +1,15 @@
+{
+  "port": 3000,
+  "host": "0.0.0.0",
+  "watch": true,
+  "routes": {
+    "/parameters": "/parameters",
+    "/parameters?keys=:key&getDefaults=true": "/parameters?keys=:key&getDefaults=true",
+    "/parameters?getDefaults=true": "/parameters?getDefaults=true"
+  },
+  "middlewares": ["./middleware.js"],
+  "no-cors": false,
+  "no-gzip": true,
+  "quiet": false,
+  "static": "./public"
+}

@@ -1,0 +1,43 @@
+{
+  "parameters": [
+    {
+      "person_id": "01F5BQND4C5J6S1H4S08KR1R54",
+      "guarantee": "DUPLICATES",
+      "name": "Gerar Report Duplicatas",
+      "description": "Feature Flag para gerar ou nao report de duplicatas",
+      "key": "ENABLE_REPORT",
+      "type": "BOOLEAN",
+      "value": "true"
+    },
+    {
+      "person_id": "01F5BQND4C5J6S1H4S08KR1R55",
+      "guarantee": "LOANS",
+      "name": "Processamento de Empréstimos",
+      "description": "Feature Flag para processamento de empréstimos",
+      "key": "PROCESS_LOANS",
+      "type": "BOOLEAN",
+      "value": "false"
+    },
+    {
+      "person_id": "01F5BQND4C5J6S1H4S08KR1R56",
+      "guarantee": "CORPORATE",
+      "name": "Corporate Registry Event Consumption",
+      "description": "Feature Flag para consumo de eventos do registro corporativo",
+      "key": "ENABLE_CORPORATE_REGISTRY_EVENT_CONSUMPTION",
+      "type": "BOOLEAN",
+      "value": "false"
+    },
+    {
+      "person_id": "01F5BQND4C5J6S1H4S08KR1R54",
+      "guarantee": "DUPLICATES",
+      "key": "ENABLE_EVENT_INGESTION_FLAG",
+      "value": "true"
+    },
+    {
+      "person_id": "01F5BQND4C5J6S1H4S08KR1R54",
+      "guarantee": "DUPLICATES",
+      "key": "DISABLE_EVENT_INGESTION_FLAG",
+      "value": "false"
+    }
+  ]
+}

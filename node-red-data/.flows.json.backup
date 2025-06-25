@@ -1,0 +1,94 @@
+[
+    {
+        "id": "feature-flags-flow",
+        "type": "tab",
+        "label": "Feature Flags Flow"
+    },
+    {
+        "id": "http-in-feature-flags",
+        "type": "http in",
+        "z": "feature-flags-flow",
+        "name": "GET /feature-flags",
+        "url": "/feature-flags",
+        "method": "get",
+        "x": 180,
+        "y": 80,
+        "wires": [
+            [
+                "http-request-json-server"
+            ]
+        ]
+    },
+    {
+        "id": "http-request-json-server",
+        "type": "http request",
+        "z": "feature-flags-flow",
+        "name": "Get from json-server",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:3000/parameters",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "transform-response"
+            ]
+        ]
+    },
+    {
+        "id": "transform-response",
+        "type": "function",
+        "z": "feature-flags-flow",
+        "name": "Transform to Feature Flags",
+        "func": "// Parse the response from json-server\nlet parameters;\ntry {\n    parameters = JSON.parse(msg.payload);\n} catch (e) {\n    node.error('Failed to parse response: ' + e.message);\n    return null;\n}\n\n// Transform the parameters into feature flags\nconst featureFlags = parameters.map(param => ({\n    name: param.key,\n    enabled: param.value === 'true',\n    description: param.description || '',\n    createdAt: Date.now(),\n    updatedAt: Date.now()\n}));\n\n// Create a new message with just the feature flags\nreturn {\n    payload: featureFlags\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 80,
+        "wires": [
+            [
+                "debug-output",
+                "http-response-feature-flags"
+            ]
+        ]
+    },
+    {
+        "id": "debug-output",
+        "type": "debug",
+        "z": "feature-flags-flow",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "http-response-feature-flags",
+        "type": "http response",
+        "z": "feature-flags-flow",
+        "name": "HTTP Response",
+        "statusCode": "200",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "x": 900,
+        "y": 80,
+        "wires": []
+    }
+]
