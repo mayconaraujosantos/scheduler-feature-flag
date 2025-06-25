@@ -1,0 +1,10 @@
+feature:
+  flags:
+    update:
+      interval: 1000 # 1 second for faster tests
+      max-cache-size: 10
+      cache-ttl: 1000 # 1 second for faster tests
+
+spring:
+  application:
+    name: feature-flag-service-test
