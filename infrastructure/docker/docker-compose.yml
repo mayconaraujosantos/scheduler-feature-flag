@@ -5,7 +5,7 @@ services:
     ports:
       - '1880:1880'
     volumes:
-      - ./node-red-data:/data
+      - ../../node-red-data:/data
     environment:
       - NODE_RED_ENABLE_PROJECTS=true
     networks:
@@ -15,7 +15,7 @@ services:
     image: node:18-alpine
     working_dir: /app
     volumes:
-      - ./:/app
+      - ../mock-api:/app
     ports:
       - '3000:3000'
     command: >
