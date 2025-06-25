@@ -1,9 +1,7 @@
 package com.banking.utils
 
 import com.banking.domain.entities.FeatureFlags
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class FeatureFlagBuilderTest {
