@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: feature-flag-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+# Feature Flag Configuration
+feature:
+  flag:
+    api:
+      url: http://192.168.0.114:1880/feature-flags/parameters
+      auth:
+        token: secret
+      timeout-ms: 10000
+    poll:
+      interval-ms: 60000 # Intervalo em milissegundos (ex: 60000ms = 1 minuto)
+      initial-delay-ms: 5000 # Delay inicial antes de começar o polling
+    ingestion:
+      key: ENABLE_EVENT_INGESTION_FLAG
+
+logging:
+  level:
+    com.banking: ${LOG_LEVEL:DEBUG}
+    org.springframework: ${SPRING_LOG_LEVEL:INFO}
+    org.quartz: ${QUARTZ_LOG_LEVEL:INFO}
